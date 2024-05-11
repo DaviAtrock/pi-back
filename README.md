@@ -5,7 +5,7 @@
 ### Participantes:
 
 ### Instalação:
-> 1̣º Faça um clone do repositorio com o seguinte comando:
+> 1̣º Faça um clone do repositório com o seguinte comando:
 ```
 git clone https://github.com/DaviAtrock/pi-back.git
 ```
