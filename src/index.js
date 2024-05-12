@@ -1,5 +1,5 @@
-const main = () => {
-    console.log('teste');
-}
+import { server } from './server/index.js';
 
-main();
+server.listen(process.env.SERVER_PORT, () => {
+    console.log(`API RODANDO NA PORTA ${process.env.SERVER_PORT}`);
+});
