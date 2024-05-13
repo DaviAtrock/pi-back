@@ -10,5 +10,92 @@
             "url": "http://31.220.31.209:5000",
             "description": "Api de produção"
         }
-    ]
+    ],
+    "paths": {
+        "/users": {
+            "post": {
+                "sumary": "Cadastro de novo usuário",
+                "description": "Esta rota é responsável pela criação de novos usuários para acesso a plataforma",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "pass"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "minimum": 3
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "pass": {
+                                        "type": "string",
+                                        "minimum": 6
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "name": "João Silva",
+                                        "email": "joao.silva@email.com",
+                                        "pass": "14@477asdfZ"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "usuário cadastrado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "error",
+                                            "example": "success"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
