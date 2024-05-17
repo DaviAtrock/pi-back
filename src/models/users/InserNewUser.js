@@ -15,9 +15,7 @@ export const InserNewUser = async (data) => {
     const responseDatabase = await Database.Execute({ query, params });
 
     if(!responseDatabase.status){
-
-        console.log(responseDatabase);
-        return { status: false, errorMessage: "erro ao executar tarefa no banco de dados"};
+        return { status: false, errorMessage: "erro ao executar tarefa no banco de dados" };
     }
 
     return { status: true };
