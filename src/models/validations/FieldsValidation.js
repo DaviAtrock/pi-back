@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-export const FielsValidation = async ({ type, params }) => {
+export const FieldsValidation = async ({ type, params }) => {
 
     let validationYup
 
@@ -16,6 +16,12 @@ export const FielsValidation = async ({ type, params }) => {
         validationYup = yup.object().shape({
             email: yup.string('formato de email não é válido').required('email é obrigatório').email('formato de email não é válido').max(150, 'máximo de caracteres ultrapassado'),
             pass: yup.string().required('senha é obrigatória').min(6, 'sua senha deve conter no mínimo 6 caracteres').max(20, 'máximo de caracteres ultrapassado')
+        });
+    }
+
+    if(type === 'token'){
+        validationYup = yup.object().shape({
+            token: yup.string('token não é válido').required('token obrigatório')
         });
     }
 

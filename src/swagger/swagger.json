@@ -142,8 +142,8 @@
                                     "type": "object",
                                     "properties": {
                                         "status": {
-                                            "value": "string",
-                                            "example": "success"
+                                            "type": "string",
+                                            "value": "success"
                                         },
                                         "message": {
                                             "type": "string",
@@ -162,8 +162,9 @@
                                     "type": "object",
                                     "properties": {
                                         "status": {
+                                            "type": "string",
                                             "value": "error",
-                                            "example": "success"
+                                            "example": "error"
                                         },
                                         "description": {
                                             "type": "string"
@@ -174,6 +175,75 @@
                         }
                     }
                 }
+            },
+            "get": {
+                "sumary": "Buscar usuários",
+                "description": "Esta rota é responsável pela busca de usuários cadastrados",
+                "tags": ["Users"],
+                "security": [{"bearerToken": []}],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": {
+
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "nenhum usuário cadastrado"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerToken": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "token"
             }
         }
     }

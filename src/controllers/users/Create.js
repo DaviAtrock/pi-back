@@ -2,7 +2,7 @@ import { Models } from '../../models/index.js';
 
 export const Create = async (req, res) => {
 
-    const responseModelValidation = await Models.validations.FielsValidation({ type: 'create', params: req.body });    
+    const responseModelValidation = await Models.validations.FieldsValidation({ type: 'create', params: req.body });    
 
     if(!responseModelValidation.status){
         return res.status(400).json({ status: "error", description: responseModelValidation?.ValidationErrors });
