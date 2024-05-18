@@ -28,5 +28,5 @@ export const Auth = async (req, res) => {
         return res.status(401).json({ status: "error", description: responseModelCreateJwt?.errorMessage });
     }
 
-    return res.status(201).json({ status: "success", token: responseModelCreateJwt.token }); 
+    return res.status(200).json({ status: "success", token: responseModelCreateJwt.token }); 
 };

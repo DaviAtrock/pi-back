@@ -12,6 +12,85 @@
         }
     ],
     "paths": {
+        "/login": {
+            "post": {
+                "sumary": "Login de autenticação",
+                "description": "Esta rota é responsável pela autenticação de usuários cadastrados",
+                "tags": ["Login"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "email",
+                                    "pass"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "pass": {
+                                        "type": "string",
+                                        "minimum": 6
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "email": "joao.silva@email.com",
+                                        "pass": "14@477asdfZ"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "success"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiI0YjkwYjM3Ny0wNjcyLTRmOWMtYjc5Ny1jOTkxYzM3Njc5NGUiLCJpYXQiOjE3MTYwNjAyNTV9.InRgJ2-lAbAzXtX4QOdfGmpsocmp3xxikqCsRhqGTdI"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "error",
+                                            "example": "success"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/users": {
             "post": {
                 "sumary": "Cadastro de novo usuário",
