@@ -8,4 +8,6 @@ router.post('/login', Controllers.login.Auth);
 router.post('/users', Controllers.users.Create);
 router.get('/users', Controllers.users.SearchUsers);
 
+router.post('/stores', Controllers.stores.CreateStore);
+
 export { router };
