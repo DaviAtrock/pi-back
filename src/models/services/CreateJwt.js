@@ -5,8 +5,6 @@ import { Database } from '../../database/index.js';
 
 export const CreateJwt = async ({ userId }) => {
 
-    console.log(userId)
-
     const token = JWT.sign({ foo: userId }, process.env.SECRET_HASH_PASS);
 
     const date = moment().format('YYYY-MM-DD HH:mm:ss');

@@ -1,19 +1,25 @@
-import { SelectUser } from './login/SelectUser.js';
-import { ConfirmPass } from './login/ConfirmPass.js';
-import { CreateJwt } from './login/CreateJwt.js';
-import { Validation } from './users/Validation.js';
-import { SelectEmail } from './users/SelectEmail.js';
-import { InserNewUser } from './users/InserNewUser.js';
+import { FielsValidation } from './validations/FielsValidation.js';
+import { ConfirmPass } from './validations/ConfirmPass.js';
+import { SelectEmail } from './database/SelectEmail.js';
+import { InserNewUser } from './database/InserNewUser.js';
+import { SelectUser } from './database/SelectUser.js';
+import { SelectUserToken } from './database/SelectUserToken.js';
+import { SelectUsers } from './database/SelectUsers.js';
+import { CreateJwt } from './services/CreateJwt.js';
 
 export const Models = {
-    auth: {
-        SelectUser,
-        ConfirmPass,
-        CreateJwt
+    validations:{
+        FielsValidation,
+        ConfirmPass
     },
-    users: {
-        Validation,
+    database: {
         SelectEmail,
-        InserNewUser
+        InserNewUser,
+        SelectUser,
+        SelectUserToken,
+        SelectUsers
+    },
+    services: {
+        CreateJwt
     }
 };
