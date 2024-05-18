@@ -2,7 +2,14 @@ import { Models } from '../../models/index.js';
 
 export const SearchUsers = async (req, res) => {
     
-    const setToken = req.headers.authorization;
+    const setToken = req?.headers?.authorization;
+
+    const responseModelValidation = await Models.validations.FieldsValidation({ type: 'token', params: { token: setToken }});
+
+    if(!responseModelValidation.status){
+        return res.status(401).json({ status: "error", description: responseModelValidation?.ValidationErrors?.token });
+    }
+
     const token = setToken.split(' ')[1];
 
     const responseModelSelectUserToken = await Models.database.SelectUserToken({ token: token });

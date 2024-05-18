@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-export const FielsValidation = async ({ type, params }) => {
+export const FieldsValidation = async ({ type, params }) => {
 
     let validationYup
 
@@ -19,6 +19,12 @@ export const FielsValidation = async ({ type, params }) => {
         });
     }
 
+    if(type === 'token'){
+        validationYup = yup.object().shape({
+            token: yup.string('token não é válido').required('token obrigatório')
+        })
+    }
+    
     if(type === 'createStore') {
         validationYup = yup.object().shape({
             storeName: yup.string('formato de nome não é válido').required('nome da loja é obrigatório').min(3, 'nome da loja deve ter no mínimo 3 letras').max(150, 'o número máximo de letras da loja deve ser 150'),
