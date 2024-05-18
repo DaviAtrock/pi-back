@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-export const Validation = async ({ type, params }) => {
+export const FielsValidation = async ({ type, params }) => {
 
     let validationYup
 
