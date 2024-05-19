@@ -2,7 +2,7 @@ import { Models } from '../../models/index.js';
 
 export const Auth = async (req, res) => {
 
-    const responseModelValidation = await Models.validations.FieldsValidation({ type: 'auth', params: req.body });    
+    const responseModelValidation = await Models.validations.FieldsValidation({ type: 'auth', params: req.body });
 
     if(!responseModelValidation.status){
         return res.status(401).json({ status: "error", description: responseModelValidation?.ValidationErrors });

@@ -4,13 +4,13 @@ export const SearchUsers = async (req, res) => {
     
     const setToken = req?.headers?.authorization;
 
-    const responseModelValidation = await Models.validations.FieldsValidation({ type: 'token', params: { token: setToken }});
+    const responseModelHeadersValidation = await Models.validations.HeadersValidation({ params: { token: setToken }})
 
-    if(!responseModelValidation.status){
-        return res.status(401).json({ status: "error", description: responseModelValidation?.ValidationErrors?.token });
+    if(!responseModelHeadersValidation.status){
+        return res.status(401).json({ status: "error", description: responseModelHeadersValidation?.ValidationErrors?.token });
     }
 
-    const token = setToken.split(' ')[1];
+    const token = responseModelHeadersValidation?.token;
 
     const responseModelSelectUserToken = await Models.database.SelectUserToken({ token: token });
 

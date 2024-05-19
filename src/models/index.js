@@ -1,4 +1,5 @@
 import { FieldsValidation } from './validations/FieldsValidation.js';
+import { HeadersValidation } from './validations/HeadersValidation.js';
 import { ConfirmPass } from './validations/ConfirmPass.js';
 import { SelectEmail } from './database/SelectEmail.js';
 import { InserNewUser } from './database/InserNewUser.js';
@@ -7,11 +8,13 @@ import { SelectUserToken } from './database/SelectUserToken.js';
 import { SelectUsers } from './database/SelectUsers.js';
 import { CreateJwt } from './services/CreateJwt.js';
 import { InsertNewStore } from './database/InsertNewStore.js';
+import { UpdatePass } from './database/UpdatePass.js';
 
 export const Models = {
     validations:{
         FieldsValidation,
-        ConfirmPass
+        ConfirmPass,
+        HeadersValidation
     },
     database: {
         SelectEmail,
@@ -19,7 +22,8 @@ export const Models = {
         SelectUser,
         SelectUserToken,
         SelectUsers,
-        InsertNewStore
+        InsertNewStore,
+        UpdatePass
     },
     services: {
         CreateJwt
