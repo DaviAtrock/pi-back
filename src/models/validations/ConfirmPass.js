@@ -9,5 +9,5 @@ export const ConfirmPass = async ({ pass, passConfirm }) => {
         return { status: false, errorMessage: "senha incorreta" };
     }
 
-    return { status: true };
+    return { status: true, pass: hash };
 };

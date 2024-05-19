@@ -187,8 +187,32 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": {
-
+                                    "type": "object", 
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "users": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "user_id": {
+                                                        "type": "string",
+                                                        "example": "63e87dc3-1197-4ce8-b89f-1003559925be"
+                                                    },
+                                                    "user_name": {
+                                                        "type": "string",
+                                                        "example": "Joao Silva"
+                                                    },
+                                                    "user_email": {
+                                                        "type": "string",
+                                                        "example": "joao.silva@email.com"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }

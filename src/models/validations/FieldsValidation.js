@@ -19,17 +19,18 @@ export const FieldsValidation = async ({ type, params }) => {
         });
     }
 
-    if(type === 'token'){
-        validationYup = yup.object().shape({
-            token: yup.string('token não é válido').required('token obrigatório')
-        })
-    }
-    
-    if(type === 'createStore') {
+    if(type === 'createStore'){
         validationYup = yup.object().shape({
             storeName: yup.string('formato de nome não é válido').required('nome da loja é obrigatório').min(3, 'nome da loja deve ter no mínimo 3 letras').max(150, 'o número máximo de letras da loja deve ser 150'),
             storeCnpj: yup.number('Formato de CNPJ não é válido').required('CNPJ da loja é obrigatório').min(14, 'CNPJ deve conter no mínimo 14 dígitos'),
             storeAddress: yup.string('formato de endereço não é válido').required('campo de endereço é obrigatório').min(6, 'o endereço deve conter no mínimo 6 letras').max(150, 'o endereço deve ter no máximo 150 letras')
+        });
+    }
+
+    if(type === 'changeUserPass'){
+        validationYup = yup.object().shape({
+            userPass: yup.string('formato de senha não é válido').required('campo de senha é obrigatório').min(6, 'senha deve conter no mínimo 6 caracteres').max(20, 'máximo de caracteres ultrapassado'),
+            userConfirmPass: yup.string('formato de senha não é válido').required('campo de confirmação de senha é obrigatório').oneOf([yup.ref('userPass'), null], 'senha de confirmação diferente da senha enviada')
         });
     }
 

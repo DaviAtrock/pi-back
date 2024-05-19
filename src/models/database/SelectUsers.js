@@ -2,7 +2,7 @@ import { Database } from '../../database/index.js';
 
 export const SelectUsers = async () => {
 
-    const query = 'SELECT * FROM users';
+    const query = 'SELECT user_id, user_name, user_email FROM users';
     const params = [];
 
     const responseDatabase = await Database.Execute({ query, params });
