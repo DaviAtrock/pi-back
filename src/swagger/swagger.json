@@ -253,6 +253,88 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "sumary": "Alterar senha do usuário",
+                "description": "Esta rota é responsável pela alteração da senha do usuário",
+                "tags": ["Users"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "userPass",
+                        "in": "query",
+                        "description": "nova senha do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "userConfirmPass",
+                        "in": "query",
+                        "description": "confirmar nova senha",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "senha alterada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
