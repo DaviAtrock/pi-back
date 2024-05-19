@@ -34,6 +34,12 @@ export const FieldsValidation = async ({ type, params }) => {
         });
     }
 
+    if(type === 'removeUser'){
+        validationYup = yup.object().shape({
+            userId: yup.string('formato não é valido').required('campo de id do usuário é obrigatório').min(36, 'id do usuário deve conter no mínimo 36 caracteres')
+        });
+    }
+
     try{
 
         await validationYup.validate(params, { abortEarly: false });

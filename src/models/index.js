@@ -9,6 +9,7 @@ import { SelectUsers } from './database/SelectUsers.js';
 import { CreateJwt } from './services/CreateJwt.js';
 import { InsertNewStore } from './database/InsertNewStore.js';
 import { UpdatePass } from './database/UpdatePass.js';
+import { DeleteUser } from './database/DeletUser.js';
 
 export const Models = {
     validations:{
@@ -23,7 +24,8 @@ export const Models = {
         SelectUserToken,
         SelectUsers,
         InsertNewStore,
-        UpdatePass
+        UpdatePass,
+        DeleteUser
     },
     services: {
         CreateJwt

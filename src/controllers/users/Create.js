@@ -20,5 +20,5 @@ export const Create = async (req, res) => {
         return res.status(400).json({ status: "error", description: responseModelInserNewUser?.errorMessage });
     }
 
-    return res.status(201).json({ status: "success", message: "usuário criado com sucesso"}); 
+    return res.status(201).json({ status: "success", message: "usuário criado com sucesso" }); 
 };
