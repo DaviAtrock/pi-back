@@ -16,12 +16,18 @@ export const RemoveUser = async (req, res) => {
         return res.status(400).json({ status: "error", description: responseModelFieldsValidation.ValidationErrors.userId });
     }
 
+    const responseModelSelectUserId = await Models.database.SelectUserId({ userId: req.query.userId  })
+
+    if(!responseModelSelectUserId.status){
+        return res.status(400).json({ status: "error", description: responseModelSelectUserId?.errorMessage });
+    }
+
     const responseModelDeleteUser = await Models.database.DeleteUser({ userId: req.query.userId });
 
     if(!responseModelDeleteUser.status){
-        return res.status(400).json({ status: "error", description: responseModelInserNewUser?.errorMessage });
+        return res.status(400).json({ status: "error", description: responseModelDeleteUser?.errorMessage });
     }
 
-    return res.status(201).json({ status: "success", message: "usuário removido com sucesso" }); 
+    return res.status(200).json({ status: "success", message: "usuário removido com sucesso" }); 
 
 };
