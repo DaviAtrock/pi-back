@@ -3,6 +3,7 @@ import { Auth } from './login/Auth.js';
 import { SearchUsers } from './users/SearchUsers.js';
 import { CreateStore } from './stores/CreateStore.js';
 import { ChangeUserPass } from './users/ChangeUserPass.js';
+import { RemoveUser } from './users/RemoveUser.js';
 
 export const Controllers = {
     login: {
@@ -11,7 +12,8 @@ export const Controllers = {
     users: {
         Create,
         SearchUsers,
-        ChangeUserPass
+        ChangeUserPass,
+        RemoveUser
     },
     stores: {
         CreateStore
