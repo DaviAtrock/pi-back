@@ -8,8 +8,6 @@ export const DeleteUser = async ({ userId }) => {
 
     const responseDatabase = await Database.Execute({ query, params });
 
-    console.log(responseDatabase)
-
     if(!responseDatabase.status){
         return { status: false, errorMessage: "erro ao executar tarefa no banco de dados" };
     }
