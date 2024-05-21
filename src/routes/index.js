@@ -11,5 +11,6 @@ router.put('/users', Controllers.users.ChangeUserPass);
 router.delete('/users', Controllers.users.RemoveUser);
 
 router.post('/stores', Controllers.stores.CreateStore);
+router.get('/stores', Controllers.stores.SearchStore);
 
 export { router };
