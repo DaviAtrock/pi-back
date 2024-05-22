@@ -13,4 +13,6 @@ router.delete('/users', Controllers.users.RemoveUser);
 router.post('/stores', Controllers.stores.CreateStore);
 router.get('/stores', Controllers.stores.SearchStore);
 
+router.post('/parts', Controllers.parts.CreateParts);
+
 export { router };

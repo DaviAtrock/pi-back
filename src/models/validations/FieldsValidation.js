@@ -40,6 +40,16 @@ export const FieldsValidation = async ({ type, params }) => {
         });
     }
 
+    if (type === 'createParts'){
+        validationYup = yup.object().shape({
+            partName: yup.string('formato invalido').required('nome da peça é obrigatório').max(150, 'máximo de caracteres alcançados'),
+            partBrand: yup.string('formato invalido').required('nome da peça é obrigatório').max(150, 'máximo de caracteres alcançados'),
+            partModel: yup.string('formato invalido').required('nome da peça é obrigatório').max(150, 'máximo de caracteres alcançados'),
+            partPrice:  yup.string('formato invalido').required('nome da peça é obrigatório').max(150, 'máximo de caracteres alcançados'),
+
+        }); 
+    }
+
     try{
 
         await validationYup.validate(params, { abortEarly: false });

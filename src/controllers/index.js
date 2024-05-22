@@ -5,6 +5,7 @@ import { ChangeUserPass } from './users/ChangeUserPass.js';
 import { RemoveUser } from './users/RemoveUser.js';
 import { SearchStore } from './stores/SearchStore.js';
 import { CreateStore } from './stores/CreateStore.js';
+import { CreateParts } from './parts/CreateParts.js';
 
 export const Controllers = {
     login: {
@@ -19,5 +20,8 @@ export const Controllers = {
     stores: {
         CreateStore,
         SearchStore
+    },
+    parts: {
+        CreateParts
     }
 }
