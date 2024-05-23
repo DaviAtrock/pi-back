@@ -49,6 +49,17 @@ export const FieldsValidation = async ({ type, params }) => {
 
         }); 
     }
+    
+    if (type === 'createCars'){
+        validationYup = yup.object().shape({
+            carName: yup.string('formato invalido').required('nome do carro é obrigatório').max(150, 'máximo de caracteres alcançados'),
+            carBrand: yup.string('formato invalido').required('marca de carro é obrigatório').max(150, 'máximo de caracteres'),
+            carModel:  yup.string('formato invalido').required('modelo de carro é obrigatório').max(150, 'máximo de caracteres'),
+            carPlate: yup.string('formato invalido').required('placa do carro é obrigatório').min(7, 'minimo de caracteres é 7').max(7, 'maximo de caracteres é 7'),
+            carChassi: yup.string('formato invalido').required('chassi do carro é obrigatório').max(17, 'maximo de caracteres é 17'),
+            carPrice: yup.string('formato invalido').required('preço do carro é obrigatorio')
+        });
+    }
 
     try{
 
