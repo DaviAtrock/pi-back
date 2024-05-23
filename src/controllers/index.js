@@ -6,6 +6,7 @@ import { RemoveUser } from './users/RemoveUser.js';
 import { SearchStore } from './stores/SearchStore.js';
 import { CreateStore } from './stores/CreateStore.js';
 import { CreateParts } from './parts/CreateParts.js';
+import { CreateCar } from './cars/CreateCar.js';
 
 export const Controllers = {
     login: {
@@ -23,5 +24,8 @@ export const Controllers = {
     },
     parts: {
         CreateParts
+    },
+    cars: {
+        CreateCar
     }
 }

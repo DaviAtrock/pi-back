@@ -15,4 +15,6 @@ router.get('/stores', Controllers.stores.SearchStore);
 
 router.post('/parts', Controllers.parts.CreateParts);
 
+router.post('/cars', Controllers.cars.CreateCar);
+
 export { router };
