@@ -500,6 +500,90 @@
                 }
             }
         },
+        "get": {
+            "sumary": "Buscar lojas",
+            "description": "Esta rota é responsável pela busca de lojas cadastradas",
+            "tags": ["Stores"],
+            "security": [{"bearerToken": []}],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object", 
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "example": "success"
+                                    },
+                                    "stores": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "storeName": {
+                                                    "type": "string",
+                                                    "example": "Fiat Brasil IESB"
+                                                },
+                                                "storeCnpj": {
+                                                    "type": "number",
+                                                    "example": "14527859652415"
+                                                },
+                                                "storeAdress": {
+                                                    "type": "string",
+                                                    "example": "Qe 28 Conj F Casa 15"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "400": {
+                    "description": "Bad request",
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "example": "error"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "nenhuma loja cadastrada"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized",
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "status": {
+                                        "value": "string",
+                                        "example": "error"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "token não é válido || token obrigatório"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
     "components": {
         "securitySchemes": {
             "bearerToken": {
