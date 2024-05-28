@@ -15,6 +15,7 @@ import { SelectStores } from './database/SelectStores.js';
 import { InsertParts } from './database/InsertParts.js';
 import { SelectCarPlateAndChassi } from './database/SelectCarPlateAndChassi.js';
 import { InsertNewCar } from './database/InsertNewCar.js';
+import { DeleteStore } from './database/DeleteStore.js';
 
 export const Models = {
     validations:{
@@ -32,6 +33,7 @@ export const Models = {
         UpdatePass,
         DeleteUser,
         SelectStores,
+        DeleteStore,
         SelectUserId,
         InsertParts,
         SelectCarPlateAndChassi,

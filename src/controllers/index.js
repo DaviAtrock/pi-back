@@ -3,8 +3,9 @@ import { Auth } from './login/Auth.js';
 import { SearchUsers } from './users/SearchUsers.js';
 import { ChangeUserPass } from './users/ChangeUserPass.js';
 import { RemoveUser } from './users/RemoveUser.js';
-import { SearchStore } from './stores/SearchStore.js';
 import { CreateStore } from './stores/CreateStore.js';
+import { SearchStore } from './stores/SearchStore.js';
+import { RemoveStore } from './stores/RemoveStore.js';
 import { CreateParts } from './parts/CreateParts.js';
 import { CreateCar } from './cars/CreateCar.js';
 
@@ -20,7 +21,8 @@ export const Controllers = {
     },
     stores: {
         CreateStore,
-        SearchStore
+        SearchStore,
+        RemoveStore
     },
     parts: {
         CreateParts
