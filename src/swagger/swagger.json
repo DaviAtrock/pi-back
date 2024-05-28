@@ -413,11 +413,12 @@
                 }
             }
         },
-        "/store": {
+        "store": {
             "post": {
                 "sumary": "Cadastro de nova loja",
                 "description": "Esta rota é responsável pela criação de novas lojas na aplicação",
                 "tags": ["Store"],
+                "security": [{"bearerToken": []}],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -583,6 +584,7 @@
                     }
                 }
             }
+        }
     },
     "components": {
         "securitySchemes": {
@@ -593,5 +595,4 @@
             }
         }
     }
-}
 }
