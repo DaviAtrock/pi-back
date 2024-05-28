@@ -27,6 +27,12 @@ export const FieldsValidation = async ({ type, params }) => {
         });
     }
 
+    if(type === 'removeStore'){
+        validationYup = yup.object().shape({
+            storeId: yup.string('formato não é valido').required('campo de id da loja é obrigatório').min(36, 'id da loja deve conter no mínimo 36 caracteres')
+        });
+    }
+
     if(type === 'changeUserPass'){
         validationYup = yup.object().shape({
             userPass: yup.string('formato de senha não é válido').required('campo de senha é obrigatório').min(6, 'senha deve conter no mínimo 6 caracteres').max(20, 'máximo de caracteres ultrapassado'),
