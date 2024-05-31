@@ -8,6 +8,7 @@ import { SearchStore } from './stores/SearchStore.js';
 import { RemoveStore } from './stores/RemoveStore.js';
 import { CreateParts } from './parts/CreateParts.js';
 import { CreateCar } from './cars/CreateCar.js';
+import { SelectCars } from './cars/SelectCars.js';
 
 export const Controllers = {
     login: {
@@ -28,6 +29,7 @@ export const Controllers = {
         CreateParts
     },
     cars: {
-        CreateCar
+        CreateCar,
+        SelectCars
     }
 }

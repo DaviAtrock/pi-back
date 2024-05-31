@@ -16,6 +16,7 @@ import { InsertParts } from './database/InsertParts.js';
 import { SelectCarPlateAndChassi } from './database/SelectCarPlateAndChassi.js';
 import { InsertNewCar } from './database/InsertNewCar.js';
 import { DeleteStore } from './database/DeleteStore.js';
+import { SelectCars } from './database/SelectCars.js';
 
 export const Models = {
     validations:{
@@ -37,7 +38,8 @@ export const Models = {
         SelectUserId,
         InsertParts,
         SelectCarPlateAndChassi,
-        InsertNewCar
+        InsertNewCar,
+        SelectCars
     },
     services: {
         CreateJwt
