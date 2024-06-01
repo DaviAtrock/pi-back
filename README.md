@@ -3,6 +3,10 @@
 > Projeto integrado do 5º semestre, turma ADS, IESB.
 
 ### Participantes:
+@https://github.com/Man0Lulu
+@https://github.com/guigabraga
+@https://github.com/gabrielbueno3
+@https://github.com/DaviAtrock
 
 ### Instalação:
 > 1̣º Faça um clone do repositório com o seguinte comando:
