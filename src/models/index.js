@@ -42,8 +42,8 @@ export const Models = {
         SelectCarPlateAndChassi,
         InsertNewCar,
         SelectCars,
-        UpdateCar
-        UpdateStore
+        UpdateCar,
+        UpdateStore,
     },
     services: {
         CreateJwt
