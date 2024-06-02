@@ -12,7 +12,8 @@ router.delete('/users', Controllers.users.RemoveUser);
 
 router.post('/stores', Controllers.stores.CreateStore);
 router.get('/stores', Controllers.stores.SearchStore);
-router.delete('/stores',Controllers.stores.RemoveStore);
+router.delete('/stores', Controllers.stores.RemoveStore);
+router.put('/stores', Controllers.stores.UpdateStore);
 
 router.post('/parts', Controllers.parts.CreateParts);
 

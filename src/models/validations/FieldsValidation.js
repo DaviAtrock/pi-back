@@ -67,6 +67,13 @@ export const FieldsValidation = async ({ type, params }) => {
         });
     }
 
+    if (type === 'updateStore'){
+        validationYup = yup.object().shape({
+            storeId: yup.string('formato inválido').required('Id da loja é obrigatório'),
+            storeAddress: yup.string('formato invalido').required('endereço obrigatório')
+        });
+    }
+
     try{
 
         await validationYup.validate(params, { abortEarly: false });
