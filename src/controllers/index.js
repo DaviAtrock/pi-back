@@ -6,6 +6,7 @@ import { RemoveUser } from './users/RemoveUser.js';
 import { CreateStore } from './stores/CreateStore.js';
 import { SearchStore } from './stores/SearchStore.js';
 import { RemoveStore } from './stores/RemoveStore.js';
+import { UpdateStore } from './stores/UpdateStore.js';
 import { CreateParts } from './parts/CreateParts.js';
 import { CreateCar } from './cars/CreateCar.js';
 import { SelectCars } from './cars/SelectCars.js';
@@ -23,7 +24,8 @@ export const Controllers = {
     stores: {
         CreateStore,
         SearchStore,
-        RemoveStore
+        RemoveStore,
+        UpdateStore
     },
     parts: {
         CreateParts
