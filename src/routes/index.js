@@ -7,5 +7,18 @@ router.post('/login', Controllers.login.Auth);
 
 router.post('/users', Controllers.users.Create);
 router.get('/users', Controllers.users.SearchUsers);
+router.put('/users', Controllers.users.ChangeUserPass);
+router.delete('/users', Controllers.users.RemoveUser);
+
+router.post('/stores', Controllers.stores.CreateStore);
+router.get('/stores', Controllers.stores.SearchStore);
+router.delete('/stores', Controllers.stores.RemoveStore);
+router.put('/stores', Controllers.stores.UpdateStore);
+
+router.post('/parts', Controllers.parts.CreateParts);
+router.get('/parts', Controllers.parts.SelectParts);
+
+router.post('/cars', Controllers.cars.CreateCar);
+router.get('/cars', Controllers.cars.SelectCars);
 
 export { router };

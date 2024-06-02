@@ -1,9 +1,9 @@
 import { Database } from '../../database/index.js';
 
-export const SelectUsers = async () => {
+export const SelectUserId = async ({ userId }) => {
 
-    const query = 'SELECT user_id, user_name, user_email FROM users';
-    const params = [];
+    const query = 'SELECT * FROM users WHERE user_id = ?';
+    const params = [userId];
 
     const responseDatabase = await Database.Execute({ query, params });
 
@@ -12,8 +12,9 @@ export const SelectUsers = async () => {
     }
 
     if(responseDatabase.results.length == 0){
-        return { status: false, errorMessage: "nenhum usuário cadastrado" };
+        return { status: false, errorMessage: "usuário não cadastrado" };
     }
 
-    return { status: true, data: responseDatabase?.results };
+    return { status: true, data: responseDatabase?.results[0] };
+
 };

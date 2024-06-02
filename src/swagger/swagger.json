@@ -5,12 +5,6 @@
         "description": "Esta API documenta todas as rotas do projeto integrado back end do 5º semestre de Análise e Desenvolvimento do IESB"
     },
     "version": "1.0.0",
-    "servers": [
-        {
-            "url": "http://31.220.31.209:5000",
-            "description": "Api de produção"
-        }
-    ],
     "paths": {
         "/login": {
             "post": {
@@ -187,8 +181,32 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": {
-
+                                    "type": "object", 
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "users": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "user_id": {
+                                                        "type": "string",
+                                                        "example": "63e87dc3-1197-4ce8-b89f-1003559925be"
+                                                    },
+                                                    "user_name": {
+                                                        "type": "string",
+                                                        "example": "Joao Silva"
+                                                    },
+                                                    "user_email": {
+                                                        "type": "string",
+                                                        "example": "joao.silva@email.com"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -208,6 +226,418 @@
                                         "description": {
                                             "type": "string",
                                             "example": "nenhum usuário cadastrado"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "sumary": "Alterar senha do usuário",
+                "description": "Esta rota é responsável pela alteração da senha do usuário",
+                "tags": ["Users"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "userPass",
+                        "in": "query",
+                        "description": "nova senha do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "userConfirmPass",
+                        "in": "query",
+                        "description": "confirmar nova senha",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "senha alterada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "sumary": "Remover usuário",
+                "description": "Esta rota é responsável pela remoção de usuários cadastrados",
+                "tags": ["Users"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "description": "id único do usuário a ser removido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "usuário removido com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stores": {
+            "post": {
+                "sumary": "Cadastro de nova loja",
+                "description": "Esta rota é responsável pela criação de novas lojas na aplicação",
+                "tags": ["Store"],
+                "security": [{"bearerToken": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "storeName",
+                                    "storeCnpj",
+                                    "storeAddress"
+                                ],
+                                "properties": {
+                                    "storeName": {
+                                        "type": "string",
+                                        "minimum": 3
+                                    },
+                                    "storeCnpj": {
+                                        "type": "number",
+                                        "minimum": 14
+                                    },
+                                    "storeAddress": {
+                                        "type": "string",
+                                        "minimum": 6,
+                                        "maximum": 150
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "store": {
+                                    "value": {
+                                        "storeName": "Fiat Brasil IESB",
+                                        "storeCnpj": "14527859652415",
+                                        "storeAdress": "Qe 28 Conj F Casa 15"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Loja cadastrada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "error",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "sumary": "Buscar lojas",
+                "description": "Esta rota é responsável pela busca de lojas cadastradas",
+                "tags": ["Store"],
+                "security": [{"bearerToken": []}],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object", 
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "stores": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "storeName": {
+                                                        "type": "string",
+                                                        "example": "Fiat Brasil IESB"
+                                                    },
+                                                    "storeCnpj": {
+                                                        "type": "number",
+                                                        "example": "14527859652415"
+                                                    },
+                                                    "storeAdress": {
+                                                        "type": "string",
+                                                        "example": "Qe 28 Conj F Casa 15"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "nenhuma loja cadastrada"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "sumary": "Alterar endereco da loja",
+                "description": "Esta rota é responsável pela alteração do endereco da loja",
+                "tags": ["Store"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "storeId",
+                        "in": "query",
+                        "description": "id unico da loja",
+                        "required": true
+                    },
+                    {
+                        "name": "storeAddress",
+                        "in": "query",
+                        "description": "novo endereco da loja",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "loja alterada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
                                         }
                                     }
                                 }

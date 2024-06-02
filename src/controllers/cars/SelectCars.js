@@ -1,7 +1,7 @@
 import { Models } from '../../models/index.js';
 
-export const SearchUsers = async (req, res) => {
-    
+export const SelectCars = async (req, res) => {
+
     const setToken = req?.headers?.authorization;
 
     const responseModelHeadersValidation = await Models.validations.HeadersValidation({ params: { token: setToken }})
@@ -17,12 +17,13 @@ export const SearchUsers = async (req, res) => {
     if(!responseModelSelectUserToken.status){
         return res.status(401).json({ status: "error", description: responseModelSelectUserToken?.errorMessage });
     }
-
-    const responseModelSectUsers = await Models.database.SelectUsers();
-
-    if(!responseModelSectUsers.status){
-        return res.status(401).json({ status: "error", description: responseModelSectUsers?.errorMessage });
+    
+    const responseModelSelectCars = await Models.database.SelectCars({ }); 
+ 
+    if(!responseModelSelectCars.status){
+        return res.status(401).json({ status: "error", description: responseModelSelectCars?.errorMessage });
     }
 
-    return res.status(200).json({ status: "success", users: responseModelSectUsers.data }); 
-};
+    return res.status(200).json({ status: "success", users: responseModelSelectCars.data }); 
+
+}

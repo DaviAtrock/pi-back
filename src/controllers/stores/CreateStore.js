@@ -1,7 +1,7 @@
 import { Models } from '../../models/index.js';
 
-export const SearchUsers = async (req, res) => {
-    
+export const CreateStore = async (req, res) => {
+
     const setToken = req?.headers?.authorization;
 
     const responseModelHeadersValidation = await Models.validations.HeadersValidation({ params: { token: setToken }})
@@ -18,11 +18,17 @@ export const SearchUsers = async (req, res) => {
         return res.status(401).json({ status: "error", description: responseModelSelectUserToken?.errorMessage });
     }
 
-    const responseModelSectUsers = await Models.database.SelectUsers();
+    const responseModelValidation = await Models.validations.FieldsValidation({ type: 'createStore', params: req.body });
 
-    if(!responseModelSectUsers.status){
-        return res.status(401).json({ status: "error", description: responseModelSectUsers?.errorMessage });
+    if (!responseModelValidation.status) {
+        return res.status(400).json({ status: "error", description: responseModelValidation?.ValidationErrors });
     }
 
-    return res.status(200).json({ status: "success", users: responseModelSectUsers.data }); 
+    const responseModelInsertNewStore = await Models.database.InsertNewStore(req.body);
+
+    if (!responseModelInsertNewStore.status){
+        return res.status(400).json({ status: "error", description: responseModelValidation?.ValidationErrors });
+    }
+
+    return res.status(201).json({ status: "success", message: "loja criada com sucesso"});
 };
