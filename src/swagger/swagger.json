@@ -583,6 +583,164 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "sumary": "Alterar endereco da loja",
+                "description": "Esta rota é responsável pela alteração do endereco da loja",
+                "tags": ["Store"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "storeId",
+                        "in": "query",
+                        "description": "id unico da loja",
+                        "required": true
+                    },
+                    {
+                        "name": "storeAddress",
+                        "in": "query",
+                        "description": "novo endereco da loja",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "loja alterada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "sumary": "Remover loja",
+                "description": "Esta rota é responsável pela remoção de lojas cadastrados",
+                "tags": ["Store"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "storeId",
+                        "in": "query",
+                        "description": "id único do loja a ser removido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "loja removida com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
