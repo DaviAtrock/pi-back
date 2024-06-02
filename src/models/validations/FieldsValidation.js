@@ -67,6 +67,14 @@ export const FieldsValidation = async ({ type, params }) => {
         });
     }
 
+    if (type === 'UpdateCars'){
+        validationYup = yup.object().shape({
+           carPrice: yup.string('formato invalido').required('preço do carro é obrigatório'),
+           carId: yup.string('formato invalido').required('identificador do carro é obrigatório'),
+           
+        });
+    }
+
     try{
 
         await validationYup.validate(params, { abortEarly: false });
