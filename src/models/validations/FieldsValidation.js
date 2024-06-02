@@ -67,6 +67,11 @@ export const FieldsValidation = async ({ type, params }) => {
         });
     }
 
+    if (type === 'UpdateCars'){
+        validationYup = yup.object().shape({
+           carPrice: yup.string('formato invalido').required('preço do carro é obrigatório'),
+           carId: yup.string('formato invalido').required('identificador do carro é obrigatório'),
+           
     if (type === 'updateStore'){
         validationYup = yup.object().shape({
             storeId: yup.string('formato inválido').required('Id da loja é obrigatório'),

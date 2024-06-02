@@ -19,5 +19,6 @@ router.post('/parts', Controllers.parts.CreateParts);
 
 router.post('/cars', Controllers.cars.CreateCar);
 router.get('/cars', Controllers.cars.SelectCars);
+router.put('/cars', Controllers.cars.UpdateCars);
 
 export { router };

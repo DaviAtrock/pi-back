@@ -10,6 +10,7 @@ import { UpdateStore } from './stores/UpdateStore.js';
 import { CreateParts } from './parts/CreateParts.js';
 import { CreateCar } from './cars/CreateCar.js';
 import { SelectCars } from './cars/SelectCars.js';
+import { UpdateCars } from './cars/UpdateCars.js';
 
 export const Controllers = {
     login: {
@@ -32,6 +33,7 @@ export const Controllers = {
     },
     cars: {
         CreateCar,
-        SelectCars
+        SelectCars,
+        UpdateCars
     }
 }
