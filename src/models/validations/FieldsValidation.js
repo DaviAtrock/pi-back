@@ -74,6 +74,12 @@ export const FieldsValidation = async ({ type, params }) => {
         });
     }
 
+    if (type === 'removeParts') {
+        validationYup = yup.object().shape({
+            partId: yup.string('formato não é valido').required('campo de id de peca é obrigatório').min(36, 'id da peca deve conter no mínimo 36 caracteres')
+        });
+    }
+
     try{
 
         await validationYup.validate(params, { abortEarly: false });
