@@ -21,5 +21,7 @@ router.delete('/parts', Controllers.parts.DeleteParts);
 
 router.post('/cars', Controllers.cars.CreateCar);
 router.get('/cars', Controllers.cars.SelectCars);
+router.put('/cars', Controllers.cars.UpdateCars);
+router.delete('/cars', Controllers.cars.RemoveCar);
 
 export { router };
