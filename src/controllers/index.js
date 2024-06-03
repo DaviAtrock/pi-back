@@ -11,6 +11,7 @@ import { CreateParts } from './parts/CreateParts.js';
 import { CreateCar } from './cars/CreateCar.js';
 import { SelectCars } from './cars/SelectCars.js';
 import { SelectParts } from './parts/SelectParts.js';
+import { DeleteParts } from './parts/DeleteParts.js';
 
 export const Controllers = {
     login: {
@@ -30,7 +31,8 @@ export const Controllers = {
     },
     parts: {
         CreateParts,
-        SelectParts
+        SelectParts,
+        DeleteParts
     },
     cars: {
         CreateCar,
