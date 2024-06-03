@@ -23,3 +23,4 @@ export const CreateParts = async (req, res) => {
 
     res.status(201).json({ status: "success", message: "peça cadastrada com sucesso" }); 
 };
+//create parts
