@@ -16,6 +16,8 @@ router.delete('/stores', Controllers.stores.RemoveStore);
 router.put('/stores', Controllers.stores.UpdateStore);
 
 router.post('/parts', Controllers.parts.CreateParts);
+router.get('/parts', Controllers.parts.SelectParts);
+router.delete('/parts', Controllers.parts.DeleteParts);
 
 router.post('/cars', Controllers.cars.CreateCar);
 router.get('/cars', Controllers.cars.SelectCars);

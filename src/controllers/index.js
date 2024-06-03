@@ -10,6 +10,8 @@ import { UpdateStore } from './stores/UpdateStore.js';
 import { CreateParts } from './parts/CreateParts.js';
 import { CreateCar } from './cars/CreateCar.js';
 import { SelectCars } from './cars/SelectCars.js';
+import { SelectParts } from './parts/SelectParts.js';
+import { DeleteParts } from './parts/DeleteParts.js';
 import { UpdateCars } from './cars/UpdateCars.js';
 import { RemoveCar } from './cars/RemoveCar.js';
 
@@ -30,7 +32,9 @@ export const Controllers = {
         UpdateStore
     },
     parts: {
-        CreateParts
+        CreateParts,
+        SelectParts,
+        DeleteParts
     },
     cars: {
         CreateCar,

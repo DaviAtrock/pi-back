@@ -19,6 +19,8 @@ import { DeleteStore } from './database/DeleteStore.js';
 import { SelectCars } from './database/SelectCars.js';
 import { UpdateCar } from './database/UpdateCar.js';
 import { UpdateStore } from './database/UpdateStore.js';
+import { SelectParts } from './database/SelectParts.js';
+import { DeleteParts } from './database/DeleteParts.js';
 import { RemoveCar } from './database/RemoveCar.js';
 
 export const Models = {
@@ -43,6 +45,9 @@ export const Models = {
         SelectCarPlateAndChassi,
         InsertNewCar,
         SelectCars,
+        UpdateStore,
+        SelectParts,
+        DeleteParts,
         UpdateCar,
         UpdateStore,
         RemoveCar
