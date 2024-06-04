@@ -22,6 +22,7 @@ import { UpdateStore } from './database/UpdateStore.js';
 import { SelectParts } from './database/SelectParts.js';
 import { DeleteParts } from './database/DeleteParts.js';
 import { RemoveCar } from './database/RemoveCar.js';
+import { UpdateParts } from './database/UpdateParts.js';
 
 export const Models = {
     validations:{
@@ -50,7 +51,8 @@ export const Models = {
         DeleteParts,
         UpdateCar,
         UpdateStore,
-        RemoveCar
+        RemoveCar,
+        UpdateParts
     },
     services: {
         CreateJwt

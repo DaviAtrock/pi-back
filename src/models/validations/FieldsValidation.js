@@ -93,6 +93,13 @@ export const FieldsValidation = async ({ type, params }) => {
         });
     }
 
+    if (type === 'updatePart') {
+        validationYup = yup.object().shape({
+            partId: yup.string('formato não é valido').required('Id da peça e obrigatorio é obrigatório').min(36, 'id da peça deve conter no mínimo 36 caracteres'),
+            partPrice: yup.string('formato não é valido').required('preço da e obrigatorio')
+        });
+    }
+
     try {
 
         await validationYup.validate(params, { abortEarly: false });
