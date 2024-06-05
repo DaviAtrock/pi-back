@@ -19,7 +19,6 @@ export const UpdateParts = async({ partId, partPrice }) => {
     params = [partPrice, partId];
 
     responseDatabase = await Database.Execute({ query, params });
-    console.log(responseDatabase)
 
     if(!responseDatabase.status){
         return { status: false, errorMessage: "erro ao executar tarefa no banco de dados" };
