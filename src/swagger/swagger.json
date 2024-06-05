@@ -742,6 +742,115 @@
                     }
                 }
             }
+        },
+        "/parts": {
+            "post": {
+                "sumary": "Cadastro de nova peça",
+                "description": "Esta rota e responsável pelo cadastro de novas peças",
+                "tags": ["Parts"],
+                "security": [{"bearerToken":[]}],
+                "requestBody": {
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "required":[
+                                    "partName",
+                                    "partBrand",
+                                    "partModel",
+                                    "partPrice"
+                                ],
+                                "properties": {
+                                    "partName": {
+                                        "type":"string"
+                                    },
+                                    "partBrand": {
+                                        "type":"string"
+                                    },
+                                    "partModel": {
+                                        "type": "string"
+                                    },
+                                    "partPrice": {
+                                        "type": "number"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "part": {
+                                    "value": {
+                                        "partName": "Retrovisor",
+                                        "partBrand": "Fiat",
+                                        "partModel": "Uno",
+                                        "partPrice": 199.99
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Loja cadastrada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "erro ao cadastrar nova loja"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
