@@ -851,6 +851,125 @@
                     }
                 }
             }
+        },
+        "/cars": {
+            "post": {
+                "sumary": "Cadastro de novo carro",
+                "description": "Esta rota e responsável pelo cadastro de novo carro",
+                "tags": ["Cars"],
+                "security": [{"bearerToken":[]}],
+                "requestBody": {
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "required":[
+                                    "carName",
+                                    "carBrand",
+                                    "carModel",
+                                    "carPlate",
+                                    "carChassi",
+                                    "carPrice"
+                                ],
+                                "properties": {
+                                    "carName": {
+                                        "type":"string"
+                                    },
+                                    "carBrand": {
+                                        "type":"string"
+                                    },
+                                    "carModel": {
+                                        "type": "string"
+                                    },
+                                    "carPlate": {
+                                        "type": "string"
+                                    },
+                                    "carChassi": {
+                                        "type": "string"
+                                    },
+                                    "carPrice": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "car": {
+                                    "value": {
+                                        "carName": "Polo",
+                                        "carBrand": "Volkswagen",
+                                        "carModel": "Polo",
+                                        "carPlate": "E3Y009U",
+                                        "carChassi": "402ZLdUDF9D5A3739",
+                                        "carPrice": "199.99"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Carro cadastrado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "erro ao cadastrar novo carro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
