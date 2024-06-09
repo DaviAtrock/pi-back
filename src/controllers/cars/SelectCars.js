@@ -24,6 +24,6 @@ export const SelectCars = async (req, res) => {
         return res.status(401).json({ status: "error", description: responseModelSelectCars?.errorMessage });
     }
 
-    return res.status(200).json({ status: "success", users: responseModelSelectCars.data }); 
+    return res.status(200).json({ status: "success", cars: responseModelSelectCars.data }); 
 
 }

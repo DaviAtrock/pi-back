@@ -2,6 +2,7 @@ import { Test } from '../jest.setup';
 
 let token;
 let userId;
+let carId;
 
 describe('Rotas /users', () => {
 
@@ -73,6 +74,62 @@ describe('Rotas /parts', () => {
 });
 
 describe('Rotas /cars', () => {
+    
+    it('[POST] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.post('/cars').set('Authorization', `Bearer 123`).send({ carName: 'carro teste', carBrand: 'marca teste', carModel: 'modelo teste', carPlate: 'teste12', carChassi: '123456', carPrice: '773.000' });
+        expect(response.status).toBe(401);
+    });
+
+    it('[POST] Deverá retornar 400 caso dê erro', async () => {
+        const response = await Test.post('/cars').set('Authorization', `Bearer ${token}`).send({ carName: 'carro teste', carBrand: 'marca teste', carModel: 'modelo teste', carPlate: 'teste12455', carChassi: '123456', carPrice: '773.000' });
+        expect(response.status).toBe(400);
+    });
+
+    it('[POST] Deverá retornar 201 caso o carro seja criado com sucesso', async () => {
+        const response = await Test.post('/cars').set('Authorization', `Bearer ${token}`).send({ carName: 'carro teste', carBrand: 'marca teste', carModel: 'modelo teste', carPlate: 'teste12', carChassi: '123456', carPrice: '773.000' });
+        expect(response.status).toBe(201);
+    });
+
+    it('[GET] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.get('/cars').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
+    });
+    
+    it('[GET] Deverá retornar 200 caso localize os carros cadastrados', async () => {
+        const response = await Test.get('/cars').set('Authorization', `Bearer ${token}`);
+        carId = response.body.cars[0].car_id;
+        expect(response.status).toBe(200);
+    });
+
+    it('[PUT] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.put('/cars').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
+    });
+
+    it('[PUT] Deverá retornar 400 caso ocorra algum erro ao alterar preço do carro', async () => {
+        const response = await Test.put('/cars').set('Authorization', `Bearer ${token}`).query({ carPrice: '12345678'});
+        expect(response.status).toBe(400);
+    });
+    
+    it('[PUT] Deverá retornar 200 caso o preço seja alterado com sucesso', async () => {
+        const response = await Test.put('/cars').set('Authorization', `Bearer ${token}`).query({ carPrice: '200.000', carId: carId });
+        expect(response.status).toBe(200);
+    });
+
+    it('[DELETE] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.delete('/cars').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
+    });
+
+    it('[DELETE] Deverá retornar 400 quando ocorrer algum erro ao remover um carro', async () => {
+        const response = await Test.delete('/cars').set('Authorization', `Bearer ${token}`).query({ carId: 11233444 });
+        expect(response.status).toBe(400);
+    });
+
+    it('[DELETE] Deverá retornar 200 caso o carro seja removido com sucesso', async () => {
+        const response = await Test.delete('/cars').set('Authorization', `Bearer ${token}`).query({ carId: carId });
+        expect(response.status).toBe(200);
+    });
 
     
 });
