@@ -1,11 +1,14 @@
 {
   "type": "module",
   "name": "pi-back",
+  "jest": {
+    "transform": {}
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "dev": "nodemon src/index.js"
   },
   "author": "",
@@ -21,6 +24,11 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^0.0.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "superagent": "^9.0.2",
+    "supertest": "^7.0.0"
   }
 }

@@ -1,7 +1,7 @@
 import express from 'express';
-import 'dotenv/config';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocs from '../swagger/swagger.json' assert { type: 'json' };
+import 'dotenv/config';
 
 import { router } from '../routes/index.js';
 
