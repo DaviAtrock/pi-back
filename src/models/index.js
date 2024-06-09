@@ -17,9 +17,12 @@ import { SelectCarPlateAndChassi } from './database/SelectCarPlateAndChassi.js';
 import { InsertNewCar } from './database/InsertNewCar.js';
 import { DeleteStore } from './database/DeleteStore.js';
 import { SelectCars } from './database/SelectCars.js';
+import { UpdateCar } from './database/UpdateCar.js';
 import { UpdateStore } from './database/UpdateStore.js';
 import { SelectParts } from './database/SelectParts.js';
 import { DeleteParts } from './database/DeleteParts.js';
+import { RemoveCar } from './database/RemoveCar.js';
+import { UpdateParts } from './database/UpdateParts.js';
 
 export const Models = {
     validations:{
@@ -45,7 +48,11 @@ export const Models = {
         SelectCars,
         UpdateStore,
         SelectParts,
-        DeleteParts
+        DeleteParts,
+        UpdateCar,
+        UpdateStore,
+        RemoveCar,
+        UpdateParts
     },
     services: {
         CreateJwt

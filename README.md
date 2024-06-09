@@ -38,3 +38,9 @@ npm run dev
 ```
 http://localhost:${PORT}/api-docs
 ```
+
+### Rodando testes unitários:
+> Rode o seguinte comando:
+```
+npm run test
+```

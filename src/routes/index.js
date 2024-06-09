@@ -18,8 +18,11 @@ router.put('/stores', Controllers.stores.UpdateStore);
 router.post('/parts', Controllers.parts.CreateParts);
 router.get('/parts', Controllers.parts.SelectParts);
 router.delete('/parts', Controllers.parts.DeleteParts);
+router.put('/parts', Controllers.parts.UpdateParts);
 
 router.post('/cars', Controllers.cars.CreateCar);
 router.get('/cars', Controllers.cars.SelectCars);
+router.put('/cars', Controllers.cars.UpdateCars);
+router.delete('/cars', Controllers.cars.RemoveCar);
 
 export { router };

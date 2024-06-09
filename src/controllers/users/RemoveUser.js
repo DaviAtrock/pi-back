@@ -4,10 +4,18 @@ export const RemoveUser = async (req, res) => {
     
     const setToken = req?.headers?.authorization;
 
-    const responseModelHeadersValidation = await Models.validations.HeadersValidation({ params: { token: setToken }})
+    const responseModelHeadersValidation = await Models.validations.HeadersValidation({ params: { token: setToken }});
 
     if(!responseModelHeadersValidation.status){
         return res.status(401).json({ status: "error", description: responseModelHeadersValidation?.ValidationErrors?.token });
+    }
+
+    const token = responseModelHeadersValidation?.token;
+
+    const responseModelSelectUserToken = await Models.database.SelectUserToken({ token: token });
+
+    if(!responseModelSelectUserToken.status){
+        return res.status(401).json({ status: "error", description: responseModelSelectUserToken?.errorMessage });
     }
 
     const responseModelFieldsValidation = await Models.validations.FieldsValidation({ type: 'removeUser', params: req.query });

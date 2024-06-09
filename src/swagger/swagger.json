@@ -450,7 +450,7 @@
                                     "value": {
                                         "storeName": "Fiat Brasil IESB",
                                         "storeCnpj": "14527859652415",
-                                        "storeAdress": "Qe 28 Conj F Casa 15"
+                                        "storeAddress": "Qe 28 Conj F Casa 15"
                                     }
                                 }
                             }
@@ -653,6 +653,310 @@
                                     "properties": {
                                         "status": {
                                             "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "sumary": "Remover loja",
+                "description": "Esta rota é responsável pela remoção de lojas cadastrados",
+                "tags": ["Store"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "storeId",
+                        "in": "query",
+                        "description": "id único do loja a ser removido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "loja removida com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/parts": {
+            "post": {
+                "sumary": "Cadastro de nova peça",
+                "description": "Esta rota e responsável pelo cadastro de novas peças",
+                "tags": ["Parts"],
+                "security": [{"bearerToken":[]}],
+                "requestBody": {
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "required":[
+                                    "partName",
+                                    "partBrand",
+                                    "partModel",
+                                    "partPrice"
+                                ],
+                                "properties": {
+                                    "partName": {
+                                        "type":"string"
+                                    },
+                                    "partBrand": {
+                                        "type":"string"
+                                    },
+                                    "partModel": {
+                                        "type": "string"
+                                    },
+                                    "partPrice": {
+                                        "type": "number"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "part": {
+                                    "value": {
+                                        "partName": "Retrovisor",
+                                        "partBrand": "Fiat",
+                                        "partModel": "Uno",
+                                        "partPrice": 199.99
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Loja cadastrada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "erro ao cadastrar nova loja"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cars": {
+            "post": {
+                "sumary": "Cadastro de novo carro",
+                "description": "Esta rota e responsável pelo cadastro de novo carro",
+                "tags": ["Cars"],
+                "security": [{"bearerToken":[]}],
+                "requestBody": {
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "required":[
+                                    "carName",
+                                    "carBrand",
+                                    "carModel",
+                                    "carPlate",
+                                    "carChassi",
+                                    "carPrice"
+                                ],
+                                "properties": {
+                                    "carName": {
+                                        "type":"string"
+                                    },
+                                    "carBrand": {
+                                        "type":"string"
+                                    },
+                                    "carModel": {
+                                        "type": "string"
+                                    },
+                                    "carPlate": {
+                                        "type": "string"
+                                    },
+                                    "carChassi": {
+                                        "type": "string"
+                                    },
+                                    "carPrice": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "car": {
+                                    "value": {
+                                        "carName": "Polo",
+                                        "carBrand": "Volkswagen",
+                                        "carModel": "Polo",
+                                        "carPlate": "E3Y009U",
+                                        "carChassi": "402ZLdUDF9D5A3739",
+                                        "carPrice": "199.99"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Carro cadastrado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "erro ao cadastrar novo carro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
                                             "example": "error"
                                         },
                                         "description": {

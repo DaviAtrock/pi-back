@@ -16,13 +16,7 @@ export const RemoveStore = async (req, res) => {
         return res.status(400).json({ status: "error", description: responseModelFieldsValidation.ValidationErrors.storeId });
     }
 
-    const responseModelSelectstoreId = await Models.database.SelectstoreId({ storeId: req.query.storeId  })
-
-    if(!responseModelSelectstoreId.status){
-        return res.status(400).json({ status: "error", description: responseModelSelectstoreId?.errorMessage });
-    }
-
-    const responseModelDeletestore = await Models.database.Deletestore({ storeId: req.query.storeId });
+    const responseModelDeletestore = await Models.database.DeleteStore({ storeId: req.query.storeId });
 
     if(!responseModelDeletestore.status){
         return res.status(400).json({ status: "error", description: responseModelDeletestore?.errorMessage });
@@ -31,3 +25,5 @@ export const RemoveStore = async (req, res) => {
     return res.status(200).json({ status: "success", message: "loja removida com sucesso" });
 
 };
+
+//--correcao de bug na remocao de loja--//
