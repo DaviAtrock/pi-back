@@ -673,7 +673,7 @@
                 "security": [{"bearerToken": []}],
                 "parameters": [
                     {
-                        "name": "storeId",
+                        "name": "carId",
                         "in": "query",
                         "description": "id único do loja a ser removido",
                         "required": true
@@ -957,6 +957,260 @@
                                     "properties": {
                                         "status": {
                                             "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "sumary": "Buscar carros",
+                "description": "Esta rota é responsável pela busca de carros cadastrados",
+                "tags": ["Cars"],
+                "security": [{"bearerToken": []}],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object", 
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "cars": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "carName": {
+                                                        "type": "string",
+                                                        "example": "Polo"
+                                                    },
+                                                    "carBrand": {
+                                                        "type": "string",
+                                                        "example": "Volkswagen"
+                                                    },
+                                                    "carModel": {
+                                                        "type": "string",
+                                                        "example": "Polo"
+                                                    },
+                                                    "carPlate": {
+                                                        "type": "string",
+                                                        "example": "E3Y009U"
+                                                    },
+                                                    "carChassi": {
+                                                        "type": "string",
+                                                        "example": "402ZLdUDF9D5A3739"
+                                                    },
+                                                    "carPrice": {
+                                                        "type": "string",
+                                                        "example": "199.99"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "sumary": "Alterar preço do carro",
+                "description": "Esta rota é responsável pela alteração do preço do carro",
+                "tags": ["Cars"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "carId",
+                        "in": "query",
+                        "description": "id unico do carro",
+                        "required": true
+                    },
+                    {
+                        "name": "carPrice",
+                        "in": "query",
+                        "description": "novo preço do carro",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "preço alterado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "sumary": "Remover carro",
+                "description": "Esta rota é responsável pela remoção de carros cadastrados",
+                "tags": ["Cars"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "carId",
+                        "in": "query",
+                        "description": "id único do carro a ser removido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "carro removido com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
                                             "example": "error"
                                         },
                                         "description": {
