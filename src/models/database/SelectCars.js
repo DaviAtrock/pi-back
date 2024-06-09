@@ -2,7 +2,7 @@ import { Database } from '../../database/index.js';
 
 export const SelectCars = async() => {
 
-    const query = 'SELECT * FROM cars';
+    const query = 'SELECT * FROM cars ORDER BY id DESC';
     const params = [];
 
     const responseDatabase = await Database.Execute({ query, params });
