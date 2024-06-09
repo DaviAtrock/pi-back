@@ -969,6 +969,102 @@
                         }
                     }
                 }
+            },
+            "get": {
+                "sumary": "Buscar carros",
+                "description": "Esta rota é responsável pela busca de carros cadastrados",
+                "tags": ["Cars"],
+                "security": [{"bearerToken": []}],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object", 
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "cars": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "carName": {
+                                                        "type": "string",
+                                                        "example": "Polo"
+                                                    },
+                                                    "carBrand": {
+                                                        "type": "string",
+                                                        "example": "Volkswagen"
+                                                    },
+                                                    "carModel": {
+                                                        "type": "string",
+                                                        "example": "Polo"
+                                                    },
+                                                    "carPlate": {
+                                                        "type": "string",
+                                                        "example": "E3Y009U"
+                                                    },
+                                                    "carChassi": {
+                                                        "type": "string",
+                                                        "example": "402ZLdUDF9D5A3739"
+                                                    },
+                                                    "carPrice": {
+                                                        "type": "string",
+                                                        "example": "199.99"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
