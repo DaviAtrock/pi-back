@@ -22,20 +22,21 @@ describe('Rotas /users', () => {
         expect(response.status).toBe(200);
     });
 
-    it('[GET] Deverá retornar 200 caso localize os usuários cadastrados', async () => {
-        const response = await Test.get('/users').set('Authorization', `Bearer ${token}`);
-        userId = response.body.users[0].user_id;
-        expect(response.status).toBe(200);
-    });
 
     it('[GET] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
         const response = await Test.get('/users').set('Authorization', `Bearer 12346`);
         expect(response.status).toBe(401);
     });
 
-    it('[PUT] Deverá retornar 200 caso a senha do usuário seja alterada com sucesso', async () => {
-        const response = await Test.put('/users').set('Authorization', `Bearer ${token}`).query({ userPass: '123456', userConfirmPass: '123456' });
+    it('[GET] Deverá retornar 200 caso localize os usuários cadastrados', async () => {
+        const response = await Test.get('/users').set('Authorization', `Bearer ${token}`);
+        userId = response.body.users[0].user_id;
         expect(response.status).toBe(200);
+    });
+
+    it('[PUT] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.put('/users').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
     });
 
     it('[PUT] Deverá retornar 400 caso ocorra algum erro ao alterar senha do usuário', async () => {
@@ -43,8 +44,13 @@ describe('Rotas /users', () => {
         expect(response.status).toBe(400);
     });
 
-    it('[PUT] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
-        const response = await Test.put('/users').set('Authorization', `Bearer 12346`);
+    it('[PUT] Deverá retornar 200 caso a senha do usuário seja alterada com sucesso', async () => {
+        const response = await Test.put('/users').set('Authorization', `Bearer ${token}`).query({ userPass: '123456', userConfirmPass: '123456' });
+        expect(response.status).toBe(200);
+    });
+
+    it('[DELETE] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.delete('/users').set('Authorization', `Bearer 12346`);
         expect(response.status).toBe(401);
     });
 
@@ -56,11 +62,6 @@ describe('Rotas /users', () => {
     it('[DELETE] Deverá retornar 200 caso o usuário seja removido com sucesso', async () => {
         const response = await Test.delete('/users').set('Authorization', `Bearer ${token}`).query({ userId: userId });
         expect(response.status).toBe(200);
-    });
-
-    it('[DELETE] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
-        const response = await Test.delete('/users').set('Authorization', `Bearer 12346`);
-        expect(response.status).toBe(401);
     });
 });
 
