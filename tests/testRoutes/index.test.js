@@ -2,6 +2,7 @@ import { Test } from '../jest.setup';
 
 let token;
 let userId;
+let partId;
 let carId;
 
 describe('Rotas /users', () => {
@@ -21,7 +22,6 @@ describe('Rotas /users', () => {
         token = response.body.token;
         expect(response.status).toBe(200);
     });
-
 
     it('[GET] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
         const response = await Test.get('/users').set('Authorization', `Bearer 12346`);
@@ -71,7 +71,65 @@ describe('Rotas /stores', () => {
 
 describe('Rotas /parts', () => {
 
+    it('[POST] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.get('/parts').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
+    });
+
+    it('[POST] Deverá retornar 400 caso ocorra algum erro no cadastro da peça', async () => {
+        const response = await Test.post('/parts').send({ partName: 'Peça Teste', partBrand: 'Marca Teste', partModel: 'Modelo Teste' });
+        expect(response.status).toBe(400);
+    });
+
+    it('[POST] Deverá retornar 201 caso a peça seja criada com sucesso', async () => {
+        const response = await Test.post('/parts').send({ partName: 'Peça Teste', partBrand: 'Marca Teste', partModel: 'Modelo Teste', partPrice: '88.88' });
+        expect(response.status).toBe(201);
+    });
+
+    it('[GET] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.get('/parts').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
+    });
+
+    it('[GET] Deverá retornar 200 caso localize as peças cadastradas', async () => {
+        const response = await Test.get('/parts').set('Authorization', `Bearer ${token}`);
+        partId = response.body.users[0].part_id;
+        expect(response.status).toBe(200);
+    });
+
+    it('[PUT] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.put('/parts').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
+    });
     
+    it('[PUT] Deverá retornar 400 caso ocorra algum erro ao alterar preço da peça', async () => {
+        const response = await Test.put('/parts').set('Authorization', `Bearer ${token}`).query({ partPrice: '12345678' });
+        expect(response.status).toBe(400);
+    });
+
+    it('[PUT] Deverá retornar 200 caso o preço da peça seja alterado com sucesso', async () => {
+        const response = await Test.put('/parts').set('Authorization', `Bearer ${token}`).query({ partPrice: '9.99', partId: partId });
+        expect(response.status).toBe(200);
+    });
+
+    it('[DELETE] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.delete('/parts').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
+    });
+
+    it('[DELETE] Deverá retornar 400 quando ocorrer algum error ao remomer a peça', async () => {
+        const response = await Test.delete('/parts').set('Authorization', `Bearer ${token}`).query({ partIdId: 11233444 });
+        expect(response.status).toBe(400);
+    });
+
+    it('[DELETE] Deverá retornar 200 caso a peça seja deletada com sucesso', async () => {
+        const response = await Test.delete('/parts').set('Authorization', `Bearer ${token}`).query({ partId: partId });
+        expect(response.status).toBe(200);
+    });
+
+    
+
+
 });
 
 describe('Rotas /cars', () => {
@@ -132,5 +190,4 @@ describe('Rotas /cars', () => {
         expect(response.status).toBe(200);
     });
 
-    
 });
