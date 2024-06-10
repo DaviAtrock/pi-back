@@ -82,7 +82,7 @@ describe('Rotas /parts', () => {
     });
 
     it('[POST] Deverá retornar 201 caso a peça seja criada com sucesso', async () => {
-        const response = await Test.post('/parts').send({ partName: 'Peça Teste', partBrand: 'Marca Teste', partModel: 'Modelo Teste', partPrice: '88.88' });
+        const response = await Test.post('/parts').set('Authorization', `Bearer ${token}`).send({ partName: 'Peça Teste', partBrand: 'Marca Teste', partModel: 'Modelo Teste', partPrice: '88.88' });
         expect(response.status).toBe(201);
     });
 
@@ -93,7 +93,7 @@ describe('Rotas /parts', () => {
 
     it('[GET] Deverá retornar 200 caso localize as peças cadastradas', async () => {
         const response = await Test.get('/parts').set('Authorization', `Bearer ${token}`);
-        partId = response.body.users[0].part_id;
+        partId = response.body.parts[0].part_id;
         expect(response.status).toBe(200);
     });
 
