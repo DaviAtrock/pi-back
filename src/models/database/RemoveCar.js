@@ -17,6 +17,8 @@ export const RemoveCar = async({ carId }) =>{
 
     query = 'DELETE FROM cars WHERE car_id = ?';
     params = [carId];
+    
+    responseDatabase = await Database.Execute({ query, params });
 
     if(!responseDatabase.status){
         return { status: false, errorMessage: "erro ao executar tarefa no banco de dados" };
