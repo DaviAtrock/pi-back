@@ -77,7 +77,7 @@ describe('Rotas /parts', () => {
     });
 
     it('[POST] Deverá retornar 400 caso ocorra algum erro no cadastro da peça', async () => {
-        const response = await Test.post('/parts').send({ partName: 'Peça Teste', partBrand: 'Marca Teste', partModel: 'Modelo Teste' });
+        const response = await Test.post('/parts').set('Authorization', `Bearer ${token}`).send({ partName: 'Peça Teste', partBrand: 'Marca Teste', partModel: 'Modelo Teste' });
         expect(response.status).toBe(400);
     });
 
