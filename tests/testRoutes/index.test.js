@@ -4,6 +4,7 @@ let token;
 let userId;
 let partId;
 let carId;
+let storeId;
 
 describe('Rotas /users', () => {
 
@@ -67,12 +68,68 @@ describe('Rotas /users', () => {
 
 describe('Rotas /stores', () => {
 
+    it('[POST] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.get('/stores').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
+    });
+
+    it('[POST] Deverá retornar 400 caso ocorra algum erro no cadastro da loja', async () => {
+        const response = await Test.post('/stores').set('Authorization', `Bearer ${token}`).send({ });
+        expect(response.status).toBe(400);
+    });
+
+    it('[POST] Deverá retornar 201 caso a loja seja criada com sucesso', async () => {
+        const response = await Test.post('/stores').set('Authorization', `Bearer ${token}`).send({ storeName: 'Loja teste', storeCnpj: '123456789101234', storeAddress: 'Endereço Teste' });
+        expect(response.status).toBe(201);
+    });
+
+    it('[GET] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.get('/stores').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
+    });
+
+    it('[GET] Deverá retornar 200 caso localize lojas cadastradas', async () => {
+        const response = await Test.get('/stores').set('Authorization', `Bearer ${token}`);
+        storeId = response.body.stores[0].store_id;
+        expect(response.status).toBe(200);
+    });
+
+    it('[PUT] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.put('/stores').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
+    });
+    
+    it('[PUT] Deverá retornar 400 caso ocorra algum erro ao alterar endereço da loja', async () => {
+        const response = await Test.put('/stores').set('Authorization', `Bearer ${token}`).query({ storeAddress: '12345678' });
+        expect(response.status).toBe(400);
+    });
+
+    it('[PUT] Deverá retornar 200 caso o endereço da loja seja alterado com sucesso', async () => {
+        const response = await Test.put('/stores').set('Authorization', `Bearer ${token}`).query({ storeAddress: 'novo teste', storeId: storeId });
+        expect(response.status).toBe(200);
+    });
+
+    it('[DELETE] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
+        const response = await Test.delete('/stores').set('Authorization', `Bearer 12346`);
+        expect(response.status).toBe(401);
+    });
+
+    it('[DELETE] Deverá retornar 400 quando ocorrer algum error ao remomer a loja', async () => {
+        const response = await Test.delete('/stores').set('Authorization', `Bearer ${token}`).query({ storeId: 11233444 });
+        expect(response.status).toBe(400);
+    });
+
+    it('[DELETE] Deverá retornar 200 caso a loja seja deletada com sucesso', async () => {
+        const response = await Test.delete('/stores').set('Authorization', `Bearer ${token}`).query({ storeId: storeId });
+        expect(response.status).toBe(200);
+    });
+
 });
 
 describe('Rotas /parts', () => {
 
     it('[POST] Deverá retornar 401 caso o token seja inválido ou não seja enviado', async () => {
-        const response = await Test.get('/parts').set('Authorization', `Bearer 12346`);
+        const response = await Test.post('/parts').set('Authorization', `Bearer 12346`);
         expect(response.status).toBe(401);
     });
 
@@ -126,10 +183,7 @@ describe('Rotas /parts', () => {
         const response = await Test.delete('/parts').set('Authorization', `Bearer ${token}`).query({ partId: partId });
         expect(response.status).toBe(200);
     });
-
-    
-
-
+   
 });
 
 describe('Rotas /cars', () => {

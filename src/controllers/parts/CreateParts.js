@@ -9,6 +9,14 @@ export const CreateParts = async (req, res) => {
         return res.status(401).json({ status: "error", description: responseModelHeadersValidation?.ValidationErrors?.token });
     }
 
+    const token = responseModelHeadersValidation?.token;
+
+    const responseModelSelectUserToken = await Models.database.SelectUserToken({ token: token });
+
+    if(!responseModelSelectUserToken.status){
+        return res.status(401).json({ status: "error", description: responseModelSelectUserToken?.errorMessage });
+    };
+
     const responseModelFieldsValidation = await Models.validations.FieldsValidation({ type: 'createParts', params: req.body });
 
     if(!responseModelFieldsValidation.status){
@@ -23,4 +31,3 @@ export const CreateParts = async (req, res) => {
 
     res.status(201).json({ status: "success", message: "peça cadastrada com sucesso" }); 
 };
-//create parts

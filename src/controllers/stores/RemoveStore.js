@@ -10,6 +10,14 @@ export const RemoveStore = async (req, res) => {
         return res.status(401).json({ status: "error", description: responseModelHeadersValidation?.ValidationErrors?.token });
     }
 
+    const token = responseModelHeadersValidation?.token;
+
+    const responseModelSelectUserToken = await Models.database.SelectUserToken({ token: token });
+
+    if(!responseModelSelectUserToken.status){
+        return res.status(401).json({ status: "error", description: responseModelSelectUserToken?.errorMessage });
+    };
+
     const responseModelFieldsValidation = await Models.validations.FieldsValidation({ type: 'removeStore', params: req.query });
 
     if(!responseModelFieldsValidation.status){
