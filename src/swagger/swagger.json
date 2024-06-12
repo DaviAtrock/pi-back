@@ -850,7 +850,90 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "sumary": "Alterar preço da peça",
+                "description": "Esta rota é responsável pela alteração do preço da peça",
+                "tags": ["Parts"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "partId",
+                        "in": "query",
+                        "description": "id unico da peça",
+                        "required": true
+                    },
+                    {
+                        "name": "partPrice",
+                        "in": "query",
+                        "description": "novo preço da peça",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "preço alterado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
+
         },
         "/cars": {
             "post": {
