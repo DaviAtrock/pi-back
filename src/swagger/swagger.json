@@ -850,6 +850,256 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "sumary": "Alterar preço da peça",
+                "description": "Esta rota é responsável pela alteração do preço da peça",
+                "tags": ["Parts"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "partId",
+                        "in": "query",
+                        "description": "id unico da peça",
+                        "required": true
+                    },
+                    {
+                        "name": "partPrice",
+                        "in": "query",
+                        "description": "novo preço da peça",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "preço alterado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "sumary": "Buscar peças",
+                "description": "Esta rota é responsável pela busca de peças cadastradas",
+                "tags": ["Parts"],
+                "security": [{"bearerToken": []}],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object", 
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "parts": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "partId": {
+                                                        "type": "string",
+                                                        "example": "c4918f88-0180-42f4-9999-5c4c76f01474"
+                                                    },
+                                                    "partName": {
+                                                        "type": "string",
+                                                        "example": "Retrovisor"
+                                                    },
+                                                    "partBrand": {
+                                                        "type": "string",
+                                                        "example": "FIAT"
+                                                    },
+                                                    "partModel": {
+                                                        "type": "string",
+                                                        "example": "UNO"
+                                                    },
+                                                    "partPrice": {
+                                                        "type": "string",
+                                                        "example": "8.99"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "script"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "sumary": "Remover peças",
+                "description": "Esta rota é responsável pela remoção de peças",
+                "tags": ["Parts"],
+                "security": [{"bearerToken": []}],
+                "parameters": [
+                    {
+                        "name": "partId",
+                        "in": "query",
+                        "description": "id único da peça a ser removido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "value": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "peça removida com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "value": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "token não é válido || token obrigatório"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/cars": {
@@ -1236,3 +1486,4 @@
         }
     }
 }
+
