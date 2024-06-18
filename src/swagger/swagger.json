@@ -673,7 +673,7 @@
                 "security": [{"bearerToken": []}],
                 "parameters": [
                     {
-                        "name": "storeId",
+                        "name": "carId",
                         "in": "query",
                         "description": "id único do loja a ser removido",
                         "required": true
